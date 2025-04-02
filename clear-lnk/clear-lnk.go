@@ -24,22 +24,22 @@ func find(root string, exts []string) []string {
 	return result
 }
 
+func getSupportedExtensions() []string {
+	return []string{".bin", ".lnk", ".qwe"}
+}
+
 func main() {
 	log.Println("start clean lnk")
 
-	exts := []string{
-		".bin",
-		".lnk",
-		".qwe",
-	}
-	files := find("E:\\", exts)
+	files := find("E:\\", getSupportedExtensions())
 
-	for _, i := range files {
-		err := os.Remove(i)
+	for _, f := range files {
+		err := os.Remove(f)
 		if err != nil {
+			log.Printf("Error remove file %s", f)
 			log.Fatal(err)
 		}
-		log.Printf("Remove %s\n", i)
+		log.Printf("Remove %s\n", f)
 	}
 
 	log.Println("Done!")
