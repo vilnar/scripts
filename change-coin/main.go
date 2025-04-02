@@ -33,13 +33,14 @@ func readInputFile() ([]int, error) {
 	lines := strings.Split(string(b), "\r\n")
 	nums := make([]int, 0, len(lines))
 
+	// fmt.Printf("debug1 %+v\n", nums)
 	for _, l := range lines {
 		if len(l) == 0 {
 			continue
 		}
 		n, err := strconv.Atoi(l)
 		if err != nil {
-			return nil, err
+			fmt.Printf("Помилка: в рядку %d символ %s не вдалося розпізнати як число. Go Error: %s\n\n", i, l, err.Error())
 		}
 		nums = append(nums, n)
 	}
